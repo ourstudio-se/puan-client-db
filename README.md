@@ -8,13 +8,20 @@ pip install puan-client-db
 
 ## Quickstart
 ```python
+import puan.logic.plog as pg
 from puan_client_db import Client
 
 # create a client
 client = Client("http://localhost:8000") # we run a service on our local machine on port 8000
 
 # create a puan model (pip install puan)
-import puan.logic.plog as pg
+model = pg.All(
+  pg.Xor(*"xyz"),
+  pg.Imply(
+    pg.Any(*"AB"),
+    pg.All(*"ijk")
+  )
+)
 
 # store the model by commiting it into the service
 # This will commit to a new model with default branch name (usually "main" but depends on backend config) 
