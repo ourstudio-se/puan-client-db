@@ -25,7 +25,7 @@ sha_first, _ = client.commit(model)
 model = model.assume({"i": 1}) # this fixes `i` to always be set to 1/True 
 
 # then made another commit
-sha_second = client.commit(model)
+client.commit(model)
 
 # some time later we want to checkout the first commit
 # (second parameter returned is an error)
