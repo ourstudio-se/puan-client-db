@@ -9,10 +9,10 @@ pip install puan-client-db
 ## Quickstart
 ```python
 import puan.logic.plog as pg
-from puan_client_db import Client
+from puan_client_db import PropositionClient
 
 # create a client
-client = Client("http://localhost:8000") # we run a service on our local machine on port 8000
+client = PropositionClient("http://localhost:8000") # we run a service on our local machine on port 8000
 
 # create a puan model (pip install puan)
 model = pg.All(
