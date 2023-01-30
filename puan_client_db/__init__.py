@@ -8,7 +8,7 @@ from abc import abstractstaticmethod
 from puan.ndarray import ge_polyhedron
 from puan import Proposition
 from dataclasses import dataclass
-from typing import Optional, Tuple, Any
+from typing import Optional, Tuple, Any, List, Dict
 
 @dataclass
 class Client:
@@ -115,6 +115,23 @@ class Client:
             key=lambda commit: self.decode(
                 commit['commit']['data'],
             ),
+        )
+
+    def search_branches(self, search_string: str) -> List[Dict[str, str]]:
+
+        """
+            Search for branches.
+
+            Returns
+            -------
+                out: List[Dict[str, str]]
+                    A list of dicts with branch information
+        """
+        return self._extract_data(
+            requests.get(
+                f"{self.url}/branch/search?search_string={search_string}",
+            ), 
+            key=lambda x: x['branches'],
         )
 
 @dataclass
